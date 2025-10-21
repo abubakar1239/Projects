@@ -1,0 +1,156 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <style>
+      button{
+     height: 50px;
+     width: 50px;
+     border-radius:50px;
+     border: none;
+     font-size: 2rem;
+     background-color: rgb(0, 0, 7);
+     color: rgb(240, 233, 233);
+
+     cursor: pointer;
+     font-family: fantasy;
+ }
+ #keys{
+     display: grid;
+  height:350px;
+  grid-template-columns: repeat(4, 1fr);
+     gap: 5px;
+     padding: 10px; 
+     margin-top:10px;  
+ }
+ #calculator{
+     font-family: Arial;
+  max-width:450px;
+ 
+   
+     background-color: rgb(26, 24, 24);
+      overflow: hidden;
+     padding: 20px;
+     border-radius: 50px;
+ }
+
+ #display{
+     padding: 5px 5px;
+     font-size: 2rem;
+     font-family: fantasy;
+      width:100%;
+     border:none;
+     color: rgb(240, 233, 233);
+     background-color: rgb(0, 60, 4);
+     outline:none;
+     text-align: right;
+     overflow:hidden;
+     border-radius: 20px;
+ padding: 5px;
+ margin-top:10px;
+      margin-right:30px;
+ 
+    
+    
+ }
+
+  button:hover{
+      background-color: rgb(35, 43, 35);
+      color: rgb(255, 255, 255);
+      
+  }
+  button:active{
+        
+         color: cornsilk;
+        background-color: rgb(0, 43, 35);
+       
+  }
+  .btn{
+      background-color: darkgoldenrod;
+  }
+  .btn:hover{
+      background-color: rgb(187, 125, 1);
+  }
+  .bt{
+      background-color: rgb(42, 151, 42);
+  }
+  .bt:hover{
+     background-color: rgb(43, 97, 55);
+ }
+ 
+    </style>
+ 
+   </head>
+
+<body>
+    <DIV id="calculator">
+        <input id="display" readonly>
+        <div id="keys">
+            <button onclick="appendtodisplay('+')" class="btn">+</button>
+            <button onclick="appendtodisplay('7')">7</button>
+            <button onclick="appendtodisplay('8')">8</button>
+            <button onclick="appendtodisplay('9')">9</button>
+            <button onclick="appendtodisplay('-')" class="btn">-</button>
+            <button onclick="appendtodisplay('4')">4</button>
+            <button onclick="appendtodisplay('5')">5</button>
+            <button onclick="appendtodisplay('6')">6</button>
+            <button onclick="appendtodisplay('*')" class="btn">*</button>
+            <button onclick="appendtodisplay('1')">1</button>
+            <button onclick="appendtodisplay('2')">2</button>
+            <button onclick="appendtodisplay('3')">3</button>
+            <button onclick="appendtodisplay('/')" class="btn">/</button>
+            <button onclick="appendtodisplay('0')">0</button>
+            <button onclick="appendtodisplay('.')">.</button>
+    <button onclick="percent()">%</button>
+       
+            <button onclick="cleardisplay()" class="btn">x</button>
+            <button onclick="backspace()">c</button>
+            <button onclick="root()">√</button>
+  <button onclick="calculate()"class="bt">=</button>        
+        </div>
+    </div>
+</body>
+<script>
+   let error ="error"
+   
+    
+   let display= document.getElementById("display")
+   function appendtodisplay(input){
+   if(display.value ===(error||undefined)){display.value=" "}display.value+=input  ;
+   }
+   
+   function cleardisplay(){
+      display.value="";
+   }
+   function backspace(){
+     if(display.value===error){
+     display.value=" "
+   }else{
+      display.value=display.value.slice(0, -1)
+   }
+   
+}
+   function calculate(){
+     try{display.value
+         =eval(display.value)
+         
+      }catch {
+       display.value=error
+     } 
+      }
+   
+   function root(){
+    try{
+       
+     display.value=Math.sqrt(eval(display.value )).toFixed(6)
+     } catch {
+        display.value="error "
+     }
+   }
+   function percent(){
+      display.value=display.value/100;
+   }
+</script>
